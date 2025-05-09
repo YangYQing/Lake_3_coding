@@ -3,6 +3,8 @@ Main program that models the lake (thermal structure + solids concentration).
 TO FILL!
 """
 
+"comments"
+
 import os
 import numpy as np
 from lake_functions import *
