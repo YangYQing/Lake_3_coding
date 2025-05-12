@@ -29,7 +29,19 @@ def case1(VAR_LAKE,Twinter=4,hmax=8):
         VAR_LAKE: dictionary containing the same variables than VAR_LAKE but at the next time step
     """
 
-    # -------- TO FILL --------
+    # -------- CODE --------
+    # Temperature
+    T_epi = Twinter
+    T_hypo = Twinter
+    # solids concnetrations
+    Css_epi = 
+    Css_hypo = 
+
+    h_epi = hmax
+    
+    VAR_LAKE={"T_epi":T_epi,"T_hypo":T_hypo,"Css_epi":Css_epi,"Css_hypo":Css_hypo,"h_epi":h_epi}
+
+    return VAR_LAKE
     
     
 #%% ###########################################################################
@@ -65,7 +77,7 @@ def case2(VAR_LAKE,Hsurf,Hsw0,tyear,iceon,Vs,C_FFT,hmax=8,g=9.81,Cpw=4200,Twinte
 #%% ###########################################################################
 def case3(VAR_LAKE,Hsurf,Hsw0,tyear,iceon,Vs,ustar,hmax=8,g=9.81,Cpw=4200,Twinter=4,A0=7.8*10**6,Dth=1.4E-7):
     """
-    Fall turnover case: one box with heat fluxes.
+    spring-summer, 2 boxes.
      
     INPUTS:
         VAR_LAKE: dictionary containing
