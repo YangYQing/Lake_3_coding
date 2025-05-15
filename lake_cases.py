@@ -71,24 +71,27 @@ def case2(VAR_LAKE,Hsurf,Hsw0,tyear,iceon,Vs,C_FFT,hmax=8,g=9.81,Cpw=4200,Twinte
         VAR_LAKE: dictionary containing the same variables than VAR_LAKE but at the next time step
         iceon: iceon date as DOY (modified only if ice formation after initial iceon date)
     """
-   # -------- CODE --------
-    # ----Initial set----
+    # -------- CODE --------
+    # ----Initial setup----
     h_epi2 = hmax  # Thermocline depth
-  
-    T_epi2 = VAR_LAKE["T_epi"]  # Temperature
-    T_hypo2 = VAR_LAKE["T_hypo"]
+    T2 = VAR_LAKE["T_epi"]  # Temperature, constant
+    Css2 = VAR_LAKE["Cssepi"] # Initial solid concentration constant
+
+    rho_w2 = rho_TCss(T_epi2, Css_epi2) # total density
+    m_w2 = rho_w2*A0*hmax # water mass
+    # ----Special process in fall----
+    # Heat flux and temperature change
+    Hsurf = surfheat(Tw=T2,Ta,Wsp,RH,P,C)
+    Qnet2 = -(Hsurf + Hsw0)*A0
+    dT2 = (Qnet2/(m_w2*Cpw))/
+
+    # turbulent mixing
     
-    Css_epi2 = VAR_LAKE["Cssepi"] # Initial solid concentration 
-
-    rho_w = rho_TCss(T_epi2, Css_epi2)
-    # Heat flux
-    Hsurf = 
-
-    # iceon
+    # iceon (not sure)
     if T_epi < Twinter:
         iceon = tyear
 
-    VAR_LAKE={"T_epi":T_epi2,"T_hypo":T_hypo2,"Css_epi":Css_epi2,"Css_hypo":Css_hypo2,"h_epi":h_epi2}
+    VAR_LAKE={"T_epi":T2,"T_hypo":T2,"Css_epi":Css2,"Css_hypo":Css2,"h_epi":h_epi2}
     return VAR_LAKE, iceon
     
     
